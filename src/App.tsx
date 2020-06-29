@@ -5,6 +5,32 @@ import { Button, Modal } from "antd";
 import { ExclamationCircleOutlined } from "@ant-design/icons";
 import "antd/dist/antd.css"
 
+interface ConfirmApproveActivityModalProps {
+  modalVisible: boolean;
+  onConfirm: () => void;
+  onCancel: () => void;
+}
+
+const ConfirmApproveActivityModal: React.FC<ConfirmApproveActivityModalProps> = ({ modalVisible, onConfirm, onCancel}) => {
+  const contentStyle = {
+    left: "32px",
+    top: "32px",
+    position: "static"
+  }
+  return (
+    <Modal
+      visible={ modalVisible }
+      footer={null}
+    >
+      <div>
+        <ExclamationCircleOutlined style={ { width: "22px", height: "22px" } }/>
+        <Button onClick={ () => onCancel() }>Cancel</Button>
+        <Button onClick={ () => onConfirm() }>Yes, Approve</Button>
+      </div>
+    </Modal>
+  )
+}
+
 function App() {
   const { confirm } = Modal;
   const [modalVisible, setModalVisible] = useState(false);
@@ -13,17 +39,23 @@ function App() {
     setModalVisible(true);
   };
 
+  const cancelButtonProps = {
+    minWidth: "126px",
+    padding: "8px 32px",
+    height: "33px",
+    lineHeight: "0px",
+    margin: "auto",
+    position: "relative",
+    background: "#45BE93",
+    border: "none"
+  }
+
   const showModalWithIcon = () => {
     confirm({
       title: "Do you want to approve this activity and all its session(s)?",
       icon: <ExclamationCircleOutlined/>,
-      content: "Please make sure that you have read through all the details as the sessions will be live upon approved.",
-      onOk() {
-        console.log("OK")
-      },
-      onCancel() {
-        console.log("Cancel")
-      }
+      content: (<div>Please make sure that you have read through all the details as the sessions will be live upon approved.</div>),
+      okText: null
     })
   }
 
@@ -56,14 +88,10 @@ function App() {
         <Button type="primary" onClick={ () => showModal() }>Approve this activity</Button>
         <Button type="primary" onClick={ () => showModalWithIcon() }>Another Approve Activity</Button>
       </header>
-      <Modal
-        title="This is a basic modal"
-        visible={ modalVisible }
-        onOk={ () => onModalOk() }
-        onCancel={ () => onModalCancel() }
-        >
-        Please make sure
-      </Modal>
+      <ConfirmApproveActivityModal
+        modalVisible={ modalVisible }
+        onConfirm={ () => onModalOk() }
+        onCancel={ () => onModalCancel() }/>
     </div>
   );
 }
