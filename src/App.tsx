@@ -17,13 +17,17 @@ const ConfirmApproveActivityModal: React.FC<ConfirmApproveActivityModalProps> = 
     top: "32px",
     position: "static"
   }
+  const iconStyle = {
+    width: "22px",
+    height: "22px"
+  }
   return (
     <Modal
       visible={ modalVisible }
       footer={null}
     >
       <div>
-        <ExclamationCircleOutlined style={ { width: "22px", height: "22px" } }/>
+        <ExclamationCircleOutlined style={ iconStyle }/>
         <Button onClick={ () => onCancel() }>Cancel</Button>
         <Button onClick={ () => onConfirm() }>Yes, Approve</Button>
       </div>
@@ -31,8 +35,39 @@ const ConfirmApproveActivityModal: React.FC<ConfirmApproveActivityModalProps> = 
   )
 }
 
+const { confirm } = Modal;
+
+interface ConfirmationDialogProps {
+  onConfirm: () => void;
+  onCancel: () => void;
+  loading?: boolean
+}
+
+const ShowConfirmationDialog = ({ onConfirm, onCancel }: ConfirmationDialogProps) =>
+  confirm({
+    title: "Do you want to approve this activity and all its session(s)?",
+    content: "Please make sure that you have read through all the details as the sessions will be live upon approved.",
+    okText: "Yes, approve",
+    onOk() {
+      onConfirm()
+    },
+    onCancel() {
+      onCancel()
+    },
+    okButtonProps:{
+      loading: true,
+      style: {
+        background: "#45BE93",
+        border: "1px solid #45BE93",
+        paddingInline: 10,
+        width: 145,
+        height: 33
+      }
+    }
+  })
+
+
 function App() {
-  const { confirm } = Modal;
   const [modalVisible, setModalVisible] = useState(false);
 
   const showModal = () => {
@@ -60,12 +95,10 @@ function App() {
   }
 
   const onModalOk = () => {
-    console.log("onModalOk");
     setModalVisible(false);
   };
 
   const onModalCancel = () => {
-    console.log("onModalCancel");
     setModalVisible(false);
   }
 
@@ -87,6 +120,7 @@ function App() {
 
         <Button type="primary" onClick={ () => showModal() }>Approve this activity</Button>
         <Button type="primary" onClick={ () => showModalWithIcon() }>Another Approve Activity</Button>
+        <Button type="primary" onClick={ () => ShowConfirmationDialog(onModalOk, onModalCancel) }>Another Approve Activity</Button>
       </header>
       <ConfirmApproveActivityModal
         modalVisible={ modalVisible }
