@@ -55,7 +55,6 @@ const ShowConfirmationDialog = ({ onConfirm, onCancel }: ConfirmationDialogProps
       onCancel()
     },
     okButtonProps:{
-      loading: true,
       style: {
         background: "#45BE93",
         border: "1px solid #45BE93",
@@ -65,6 +64,17 @@ const ShowConfirmationDialog = ({ onConfirm, onCancel }: ConfirmationDialogProps
       }
     }
   })
+
+const ShowConfirmationDialogV2: React.FC<ConfirmationDialogProps> = ({onConfirm, onCancel, loading}: ConfirmationDialogProps) => {
+
+  return (
+    <Modal
+
+      >
+
+    </Modal>
+  )
+}
 
 
 function App() {
@@ -120,7 +130,6 @@ function App() {
 
         <Button type="primary" onClick={ () => showModal() }>Approve this activity</Button>
         <Button type="primary" onClick={ () => showModalWithIcon() }>Another Approve Activity</Button>
-        <Button type="primary" onClick={ () => ShowConfirmationDialog(onModalOk, onModalCancel) }>Another Approve Activity</Button>
       </header>
       <ConfirmApproveActivityModal
         modalVisible={ modalVisible }
