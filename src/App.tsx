@@ -11,29 +11,30 @@ interface ConfirmApproveActivityModalProps {
   onCancel: () => void;
 }
 
-const ConfirmApproveActivityModal: React.FC<ConfirmApproveActivityModalProps> = ({ modalVisible, onConfirm, onCancel}) => {
-  const contentStyle = {
-    left: "32px",
-    top: "32px",
-    position: "static"
+const ConfirmApproveActivityModal: React.FC<ConfirmApproveActivityModalProps> =
+  ({ modalVisible, onConfirm, onCancel}) => {
+    const contentStyle = {
+      left: "32px",
+      top: "32px",
+      position: "static"
+    }
+    const iconStyle = {
+      width: "22px",
+      height: "22px"
+    }
+    return (
+      <Modal
+        visible={ modalVisible }
+        footer={null}
+      >
+        <div>
+          <ExclamationCircleOutlined style={ iconStyle }/>
+          <Button onClick={ () => onCancel() }>Cancel</Button>
+          <Button onClick={ () => onConfirm() }>Yes, Approve</Button>
+        </div>
+      </Modal>
+    )
   }
-  const iconStyle = {
-    width: "22px",
-    height: "22px"
-  }
-  return (
-    <Modal
-      visible={ modalVisible }
-      footer={null}
-    >
-      <div>
-        <ExclamationCircleOutlined style={ iconStyle }/>
-        <Button onClick={ () => onCancel() }>Cancel</Button>
-        <Button onClick={ () => onConfirm() }>Yes, Approve</Button>
-      </div>
-    </Modal>
-  )
-}
 
 const { confirm } = Modal
 
