@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import logo from './logo.svg';
-import './App.css';
-import { Button, Modal } from "antd";
-import { ExclamationCircleOutlined } from "@ant-design/icons";
+import React, { useState } from "react"
+import logo from "./logo.svg"
+import "./App.css"
+import { Button, Modal } from "antd"
+import { ExclamationCircleOutlined } from "@ant-design/icons"
 import "antd/dist/antd.css"
 
 interface ConfirmApproveActivityModalProps {
@@ -35,7 +35,7 @@ const ConfirmApproveActivityModal: React.FC<ConfirmApproveActivityModalProps> = 
   )
 }
 
-const { confirm } = Modal;
+const { confirm } = Modal
 
 interface ConfirmationDialogProps {
   onConfirm: () => void;
@@ -70,7 +70,7 @@ const ShowConfirmationDialogV2: React.FC<ConfirmationDialogProps> = ({onConfirm,
   return (
     <Modal
 
-      >
+    >
 
     </Modal>
   )
@@ -78,11 +78,11 @@ const ShowConfirmationDialogV2: React.FC<ConfirmationDialogProps> = ({onConfirm,
 
 
 function App() {
-  const [modalVisible, setModalVisible] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false)
 
   const showModal = () => {
-    setModalVisible(true);
-  };
+    setModalVisible(true)
+  }
 
   const cancelButtonProps = {
     minWidth: "126px",
@@ -105,11 +105,11 @@ function App() {
   }
 
   const onModalOk = () => {
-    setModalVisible(false);
-  };
+    setModalVisible(false)
+  }
 
   const onModalCancel = () => {
-    setModalVisible(false);
+    setModalVisible(false)
   }
 
   return (
@@ -136,7 +136,7 @@ function App() {
         onConfirm={ () => onModalOk() }
         onCancel={ () => onModalCancel() }/>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
