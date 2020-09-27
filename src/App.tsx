@@ -1,141 +1,66 @@
-import React, { useState } from "react"
-import logo from "./logo.svg"
+import React from "react"
 import "./App.css"
-import { Button, Modal } from "antd"
-import { ExclamationCircleOutlined } from "@ant-design/icons"
+import { Layout, Menu, Breadcrumb } from "antd"
+import { UserOutlined, LaptopOutlined, NotificationOutlined } from "@ant-design/icons"
 import "antd/dist/antd.css"
 
-interface ConfirmApproveActivityModalProps {
-  modalVisible: boolean;
-  onConfirm: () => void;
-  onCancel: () => void;
-}
+const { Header, Sider, Content } = Layout
+const { SubMenu } = Menu
 
-const ConfirmApproveActivityModal: React.FC<ConfirmApproveActivityModalProps> =
-  ({ modalVisible, onConfirm, onCancel}) => {
-    const contentStyle = {
-      left: "32px",
-      top: "32px",
-      position: "static"
-    }
-    const iconStyle = {
-      width: "22px",
-      height: "22px"
-    }
-    return (
-      <Modal
-        visible={ modalVisible }
-        footer={null}
-      >
-        <div>
-          <ExclamationCircleOutlined style={ iconStyle }/>
-          <Button onClick={ () => onCancel() }>Cancel</Button>
-          <Button onClick={ () => onConfirm() }>Yes, Approve</Button>
-        </div>
-      </Modal>
-    )
-  }
-
-const { confirm } = Modal
-
-interface ConfirmationDialogProps {
-  onConfirm: () => void;
-  onCancel: () => void;
-  loading?: boolean
-}
-
-const ShowConfirmationDialog = ({ onConfirm, onCancel }: ConfirmationDialogProps) =>
-  confirm({
-    title: "Do you want to approve this activity and all its session(s)?",
-    content: "Please make sure that you have read through all the details as the sessions will be live upon approved.",
-    okText: "Yes, approve",
-    onOk() {
-      onConfirm()
-    },
-    onCancel() {
-      onCancel()
-    },
-    okButtonProps:{
-      style: {
-        background: "#45BE93",
-        border: "1px solid #45BE93",
-        paddingInline: 10,
-        width: 145,
-        height: 33
-      }
-    }
-  })
-
-const ShowConfirmationDialogV2: React.FC<ConfirmationDialogProps> = ({onConfirm, onCancel, loading}: ConfirmationDialogProps) => {
-
-  return (
-    <Modal
-
-    >
-
-    </Modal>
-  )
-}
-
-
-function App() {
-  const [modalVisible, setModalVisible] = useState(false)
-
-  const showModal = () => {
-    setModalVisible(true)
-  }
-
-  const cancelButtonProps = {
-    minWidth: "126px",
-    padding: "8px 32px",
-    height: "33px",
-    lineHeight: "0px",
-    margin: "auto",
-    position: "relative",
-    background: "#45BE93",
-    border: "none"
-  }
-
-  const showModalWithIcon = () => {
-    confirm({
-      title: "Do you want to approve this activity and all its session(s)?",
-      icon: <ExclamationCircleOutlined/>,
-      content: (<div>Please make sure that you have read through all the details as the sessions will be live upon approved.</div>),
-      okText: null
-    })
-  }
-
-  const onModalOk = () => {
-    setModalVisible(false)
-  }
-
-  const onModalCancel = () => {
-    setModalVisible(false)
-  }
-
+const App = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-
-        <Button type="primary" onClick={ () => showModal() }>Approve this activity</Button>
-        <Button type="primary" onClick={ () => showModalWithIcon() }>Another Approve Activity</Button>
-      </header>
-      <ConfirmApproveActivityModal
-        modalVisible={ modalVisible }
-        onConfirm={ () => onModalOk() }
-        onCancel={ () => onModalCancel() }/>
+      <Layout>
+        <Header className="header">
+          <div className="logo" />
+        </Header>
+        <Layout>
+          <Sider width={200} className="site-layout-background">
+            <Menu
+              mode="inline"
+              defaultSelectedKeys={["1"]}
+              defaultOpenKeys={["sub1"]}
+              style={{ height: "100%", borderRight: 0 }}
+            >
+              <SubMenu key="sub1" icon={<UserOutlined />} title="subnav 1">
+                {
+                  Array.from({ length: 4 }, (_, i) => i + 1)
+                    .map(elem => (<Menu.Item key={elem}>Option {elem}</Menu.Item>))
+                }
+              </SubMenu>
+              <SubMenu key="sub2" icon={<LaptopOutlined />} title="subnav 2">
+                <Menu.Item key="5">option5</Menu.Item>
+                <Menu.Item key="6">option6</Menu.Item>
+                <Menu.Item key="7">option7</Menu.Item>
+                <Menu.Item key="8">option8</Menu.Item>
+              </SubMenu>
+              <SubMenu key="sub3" icon={<NotificationOutlined />} title="subnav 3">
+                <Menu.Item key="9">option9</Menu.Item>
+                <Menu.Item key="10">option10</Menu.Item>
+                <Menu.Item key="11">option11</Menu.Item>
+                <Menu.Item key="12">option12</Menu.Item>
+              </SubMenu>
+            </Menu>
+          </Sider>
+          <Layout style={{ padding: "0 24px 24px" }}>
+            <Breadcrumb style={{ margin: "16px 0" }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <Content
+              className="site-layout-background"
+              style={{
+                padding: 24,
+                margin: 0,
+                minHeight: 280,
+              }}
+            >
+              Content
+            </Content>
+          </Layout>
+        </Layout>
+      </Layout>
     </div>
   )
 }
