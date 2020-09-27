@@ -1,13 +1,11 @@
 import React from "react"
 import { render } from "@testing-library/react"
 import App from "./App"
+import { Col, Row } from "antd"
 
 describe("App", () => {
-  test("renders learn react link", () => {
-    const { getByText } = render(<App />)
-    const linkElement = getByText(/learn react/i)
-    expect(linkElement).toBeInTheDocument()
-    expect(getByText("Approve this activity")).toBeInTheDocument()
+  test("should be able to render", () => {
+    render(<App />)
   })
 })
 
