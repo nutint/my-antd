@@ -8,4 +8,3 @@ describe("App", () => {
     render(<App />)
   })
 })
-
