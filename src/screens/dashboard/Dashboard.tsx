@@ -6,16 +6,16 @@ export const Dashboard: React.FC = (): React.ReactElement => {
   return <div>
     <Row gutter={{ xs: 8, sm: 16 }}>
       <Col span="4">
-        <DashboardCard/>
+        <DashboardCard caption="Total Cookies" value="9"/>
       </Col>
       <Col span="4">
-        <DashboardCard/>
+        <DashboardCard caption="Total Scripts" value="1"/>
       </Col>
       <Col span="4">
-        <DashboardCard/>
+        <DashboardCard caption="Total Categories" value="5"/>
       </Col>
       <Col span="4">
-        <DashboardCard/>
+        <DashboardCard caption="Unknown" value="0"/>
       </Col>
     </Row>
   </div>
