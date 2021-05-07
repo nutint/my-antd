@@ -1,5 +1,5 @@
 import React from "react"
-import { Menu} from "antd"
+import { Menu } from "antd"
 import { Link } from "react-router-dom"
 
 interface MenuItem {
@@ -17,7 +17,7 @@ export const SideMenu: React.FC<Props> = ({ items }: Props): React.ReactElement 
       mode="inline"
       defaultSelectedKeys={["1"]}
       defaultOpenKeys={["sub1"]}
-      style={{height: "100%", borderRight: 0}}
+      style={{ height: "100%", borderRight: 0 }}
     >
       {
         items.map(({ label, path }, index) => (

@@ -152,6 +152,7 @@
     "@types/redux": "^3.6.0",
     "@typescript-eslint/eslint-plugin": "^4.2.0",
     "@typescript-eslint/parser": "^4.2.0",
+    "cypress": "^7.2.0",
     "eslint": "^7.9.0",
     "eslint-plugin-react": "^7.21.1"
   }

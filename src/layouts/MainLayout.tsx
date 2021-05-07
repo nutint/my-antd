@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, } from "react-router-dom"
 import { SideMenu } from "./components/SideMenu"
 import { LogCreate } from "../screens/log-create/LogCreate"
 import { Dashboard } from "../screens/dashboard/Dashboard"
+import { Sites } from "../screens/sites/sites"
 
 const { Header, Sider, Content } = Layout
 
@@ -44,18 +45,9 @@ export const MainLayout: React.FC = (): React.ReactElement => {
               <Route path="/dashboard">
                 <Dashboard/>
               </Route>
-              <Route path="/log-create">
-                <LogCreate />
+              <Route path="/sites">
+                <Sites />
               </Route>
-
-              <Route path="/about">
-                About
-              </Route>
-
-              <Route path="/other">
-                Other
-              </Route>
-
             </Switch>
 
           </Content>
